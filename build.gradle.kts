@@ -10,10 +10,9 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/com.codeborne/selenide
-    implementation("com.codeborne:selenide:7.8.1")
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
+    testImplementation("com.codeborne:selenide:6.19.1")
 }
 
 tasks.test {
