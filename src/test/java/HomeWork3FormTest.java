@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
         Configuration.browser = "Chrome";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -46,7 +47,7 @@ import static com.codeborne.selenide.Selenide.*;
         $("#uploadPicture").uploadFromClasspath("img/sample.jpg");
 
         // Адрес
-        $("#currentAddress").setValue("123 Main Street, Moscow");
+        $("#currentAddress").setValue("1234 Main Street, Moscow");
 
         // Выбор штата и города
         $("#state").scrollTo().click();
@@ -68,7 +69,7 @@ import static com.codeborne.selenide.Selenide.*;
                 text("English"),
                 text("Sports, Music"),
                 text("sample.jpg"),
-                text("123 Main Street, Moscow"),
+                text("1234 Main Street, Moscow"),
                 text("NCR Gurgaon")
         );
     }
