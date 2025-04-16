@@ -60,17 +60,16 @@ import static com.codeborne.selenide.Selenide.*;
 
         // Проверка результата
         $(".modal-content").should(appear);
-        $(".table-responsive").shouldHave(
-                text("Mariia Ivanova"),
-                text("mariia@example.com"),
-                text("Female"),
-                text("9123456789"),
-                text("15 May,1990"),
-                text("English"),
-                text("Sports, Music"),
-                text("sample.jpg"),
-                text("1234 Main Street, Moscow"),
-                text("Rajasthan Jaipur")
-        );
+        $(".table-responsive").shouldHave(text("Mariia Ivanova"));
+        $(".table-responsive").shouldHave(text("mariia@example.com"));
+        $(".table-responsive").shouldHave(text("Female"));
+        $(".table-responsive").shouldHave(text("9123456789"));
+        $(".table-responsive").shouldHave(text("15 May,1990"));
+        $(".table-responsive").shouldHave(text("English"));
+        $(".table-responsive").shouldHave(text("Sports, Music"));
+        $(".table-responsive").shouldHave(text("sample.jpg"));
+        $(".table-responsive").shouldHave(text("1234 Main Street, Moscow"));
+        $(".table-responsive").shouldHave(text("Rajasthan Jaipur"));
+
     }
 }
