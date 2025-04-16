@@ -3,16 +3,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
  public class HomeWork3FormTest {
 
     @BeforeAll
-    static void BeforeAll() {
+    static void beforeAll() {
         Configuration.browser = "Chrome";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
     }
 
     @Test
@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.*;
         $("#userEmail").setValue("mariia@example.com");
 
         // Пол
-        $("label[for='gender-radio-2']").click();
+        $("#genterWrapper").$(byText("Female")).click();
 
         // Номер телефона
         $("#userNumber").setValue("9123456789");
@@ -40,8 +40,8 @@ import static com.codeborne.selenide.Selenide.*;
         $("#subjectsInput").setValue("English").pressEnter();
 
         // Хобби
-        $("label[for='hobbies-checkbox-1']").click();
-        $("label[for='hobbies-checkbox-3']").click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Music")).click();
 
         // Загрузка изображения
         $("#uploadPicture").uploadFromClasspath("img/sample.jpg");
@@ -51,9 +51,9 @@ import static com.codeborne.selenide.Selenide.*;
 
         // Выбор штата и города
         $("#state").scrollTo().click();
-        $("#react-select-3-option-0").click(); // NCR
+        $("#react-select-3-input").setValue("Rajasthan").pressEnter(); // Rajasthan
         $("#city").click();
-        $("#react-select-4-option-1").click(); // Gurgaon
+        $("#react-select-4-input").setValue("Jaipur").pressEnter(); // Jaipur
 
         // Отправка формы
         $("#submit").click();
@@ -70,7 +70,7 @@ import static com.codeborne.selenide.Selenide.*;
                 text("Sports, Music"),
                 text("sample.jpg"),
                 text("1234 Main Street, Moscow"),
-                text("NCR Gurgaon")
+                text("Rajasthan Jaipur")
         );
     }
 }
