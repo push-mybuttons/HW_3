@@ -7,6 +7,10 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+/**
+ * Тест для проверки наличия примера JUnit5 на странице SoftAssertions
+ * требует Java 17+ для поддержки text blocks
+ */
 public class HomeWork4SoftAssertions {
 
     @BeforeAll
@@ -15,11 +19,10 @@ public class HomeWork4SoftAssertions {
         Configuration.baseUrl = "https://github.com";
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadTimeout = 10000;
-
     }
 
     @Test
-    void softAssertionsPageShouldContainJUnit5Example() {
+    void softAssertionsPageShouldContainJUnit5ExampleTest() {
         // Шаг 1: Открываем страницу репозитория Selenide
         open("/selenide/selenide");
 
@@ -38,12 +41,24 @@ public class HomeWork4SoftAssertions {
         // Шаг 6: Проверяем наличие примера использования JUnit5
         $("#wiki-body").shouldBe(visible).shouldHave(text("Using JUnit5 extend test class"));
 
-        // Шаг 7: Проверяем наличие блока кода с примером JUnit5 в соответствующей секции
+        // Шаг 7: Проверяем точное соответствие блока кода с примером JUnit5
+        String expectedCode = """
+            @ExtendWith({SoftAssertsExtension.class})
+            class Tests {
+              @Test
+              void test() {
+                Configuration.assertionMode = SOFT;
+                open("page.html");
+
+                $("#first").should(visible).click();
+                $("#second").should(visible).click();
+              }
+            }""";
+
+        // Проверяем наличие и точное соответствие кода
         $(".markdown-body")
             .$$("pre")
             .findBy(text("SoftAssertsExtension"))
-            .shouldHave(text("@ExtendWith({SoftAssertsExtension.class})"))
-            .shouldHave(text("class Tests"))
-            .shouldHave(text("Configuration.assertionMode = SOFT;"));
+            .shouldHave(exactText(expectedCode));
     }
 }
