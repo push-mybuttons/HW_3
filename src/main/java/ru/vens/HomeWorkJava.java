@@ -1,4 +1,6 @@
-public class Main {
+package ru.vens;
+
+public class HomeWorkJava {
 
     public static void main(String[] args) {
         // 0) Арифметические операции над двумя int

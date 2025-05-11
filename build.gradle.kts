@@ -1,9 +1,14 @@
 plugins {
     id("java-library")
+    id("application")
 }
 
 group = "ru.vens"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass.set("ru.vens.HomeWorkJava")
+}
 
 java {
     toolchain {
