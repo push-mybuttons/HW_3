@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 import java.io.IOException;
@@ -45,7 +44,7 @@ public class HomeWork5HoverTest {
         logger.debug("Находим и наводим курсор на 'Solutions' в главном меню");
         $$(".HeaderMenu-link").findBy(text("Solutions")).shouldBe(visible).hover();
 
-        // Явно ждём, пока дропдаун станет НЕ скрытым
+        // Шаг 3: Явно ждём, пока дропдаун станет НЕ скрытым
         $(".HeaderMenu-dropdown").should(not(attribute("hidden")));
         
         // Шаг 4: Находим и кликаем на Enterprises
@@ -54,8 +53,7 @@ public class HomeWork5HoverTest {
 
         // Шаг 5: Проверяем заголовок страницы
         logger.debug("Проверяем заголовок страницы");
-        $(".enterprise-hero").shouldBe(visible)
-                .shouldHave(text("The AI-powered developer platform"));
+        $(".enterprise-hero").shouldBe(visible).shouldHave(text("The AI-powered developer platform"));
         logger.info("Тест успешно завершен");
     }
 }

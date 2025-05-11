@@ -9,6 +9,13 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
+    sourceSets {
+        main {
+            java {
+                setSrcDirs(listOf("src/main/java"))
+            }
+        }
+    }
 }
 
 repositories {
@@ -16,10 +23,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
-    testImplementation("com.codeborne:selenide:6.19.1")
-    testImplementation("ch.qos.logback:logback-classic:1.4.14")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("com.codeborne:selenide:7.2.1")
+    testImplementation("org.seleniumhq.selenium:selenium-devtools-v85:4.18.1")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
 }
 
 tasks.test {
