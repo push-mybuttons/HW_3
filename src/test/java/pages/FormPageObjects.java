@@ -1,16 +1,16 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import components.CalendarComponent;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class FormPageObjectsTest {
+public class FormPageObjects {
     private final SelenideElement firstName = $("#firstName");
     private final SelenideElement lastName = $("#lastName");
     private final SelenideElement userEmail = $("#userEmail");
     private final SelenideElement genderWrapper = $("#genterWrapper");
     private final SelenideElement userNumber = $("#userNumber");
-    private final SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
     private final SelenideElement subjectsInput = $("#subjectsInput");
     private final SelenideElement hobbiesWrapper = $("#hobbiesWrapper");
     private final SelenideElement uploadPicture = $("#uploadPicture");
@@ -18,6 +18,7 @@ public class FormPageObjectsTest {
     private final SelenideElement state = $("#state");
     private final SelenideElement city = $("#city");
     private final SelenideElement submitButton = $("#submit");
+    private final CalendarComponent calendar = new CalendarComponent();
 
     public void openPage() {
         open("/automation-practice-form");
@@ -44,11 +45,7 @@ public class FormPageObjectsTest {
     }
 
     public void setDateOfBirth(String month, String year, String day) {
-        dateOfBirthInput.scrollIntoView(true);
-        dateOfBirthInput.click();
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--0" + day).click();
+        calendar.setDate(month, year, day);
     }
 
     public void setSubject(String subject) {

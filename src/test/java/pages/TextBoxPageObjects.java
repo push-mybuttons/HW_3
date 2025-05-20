@@ -4,7 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
-public class TextBoxPageObjectsTest {
+public class TextBoxPageObjects {
     private final SelenideElement userName = $("#userName");
     private final SelenideElement userEmail = $("#userEmail");
     private final SelenideElement currentAddress = $("#currentAddress");

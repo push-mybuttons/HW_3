@@ -1,7 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pages.TextBoxPageObjectsTest;
+import pages.TextBoxPageObjects;
 import components.ResultsTable;
 
 import static com.codeborne.selenide.Condition.*;
@@ -18,7 +18,7 @@ public class TextBoxTest {
 
     @Test
     void fillTheTextBoxTest() {
-        TextBoxPageObjectsTest form = new TextBoxPageObjectsTest();
+        TextBoxPageObjects form = new TextBoxPageObjects();
 
         form.openPage();
         form.setUserName("Mariia Ivanova");
@@ -26,7 +26,6 @@ public class TextBoxTest {
         form.setAddress("1234 Main Street, Moscow");
         form.setPermanentAddress("1234 Permanent Street, Moscow");
         form.submit();
-        
         form.shouldAppear();
         form.checkName("Name:Mariia Ivanova");
         form.checkEmail("Email:mariia@example.com");

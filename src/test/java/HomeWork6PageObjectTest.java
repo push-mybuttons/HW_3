@@ -1,25 +1,26 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import pages.FormPageObjectsTest;
+import pages.FormPageObjects;
 import components.ResultsTable;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class HomeWork6PageObject {
+public class HomeWork6PageObjectTest {
 
     @BeforeAll
     static void beforeAll() {
         Configuration.browser = "Chrome";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
     void fillTheFormTest() {
-        FormPageObjectsTest form = new FormPageObjectsTest();
+        FormPageObjects form = new FormPageObjects();
         ResultsTable results = new ResultsTable();
 
         form.openPage();
@@ -43,7 +44,7 @@ public class HomeWork6PageObject {
 
     @Test
     void fillMinimalRequiredFieldsTest() {
-        FormPageObjectsTest form = new FormPageObjectsTest();
+        FormPageObjects form = new FormPageObjects();
         ResultsTable results = new ResultsTable();
 
         form.openPage();
@@ -61,7 +62,7 @@ public class HomeWork6PageObject {
 
     @Test
     void negativeTestWithoutPhoneTest() {
-        FormPageObjectsTest form = new FormPageObjectsTest();
+        FormPageObjects form = new FormPageObjects();
         ResultsTable results = new ResultsTable();
 
         form.openPage();
