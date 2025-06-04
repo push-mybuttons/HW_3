@@ -8,15 +8,18 @@ public class ResultsTable {
     private final SelenideElement table = $(".table-responsive");
     private final SelenideElement modal = $(".modal-content");
 
-    public void shouldAppear() {
+    public ResultsTable shouldAppear() {
         modal.should(appear);
+        return this;
     }
 
-    public void shouldNotAppear() {
+    public ResultsTable shouldNotAppear() {
         modal.shouldNot(appear);
+        return this;
     }
 
-    public void shouldHaveText(String text) {
+        public ResultsTable shouldHaveText(String text) {
         table.shouldHave(text(text));
+        return this;
     }
 } 

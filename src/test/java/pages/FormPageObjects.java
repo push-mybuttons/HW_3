@@ -20,62 +20,76 @@ public class FormPageObjects {
     private final SelenideElement submitButton = $("#submit");
     private final CalendarComponent calendar = new CalendarComponent();
 
-    public void openPage() {
+    public FormPageObjects openPage() {
         open("/automation-practice-form");
+        return this;
     }
 
-    public void setFirstName(String value) {
+    public FormPageObjects setFirstName(String value) {
         firstName.setValue(value);
+        return this;
     }
 
-    public void setLastName(String value) {
+    public FormPageObjects setLastName(String value) {
         lastName.setValue(value);
+        return this;
     }
 
-    public void setEmail(String value) {
+    public FormPageObjects setEmail(String value) {
         userEmail.setValue(value);
+        return this;
     }
 
-    public void selectGender(String gender) {
+    public FormPageObjects selectGender(String gender) {
         genderWrapper.$(byText(gender)).click();
+        return this;
     }
 
-    public void setPhoneNumber(String value) {
+    public FormPageObjects setPhoneNumber(String value) {
         userNumber.setValue(value);
+        return this;
     }
 
-    public void setDateOfBirth(String month, String year, String day) {
+    public FormPageObjects setDateOfBirth(String month, String year, String day) {
         calendar.setDate(month, year, day);
+        return this;
     }
 
-    public void setSubject(String subject) {
+    public FormPageObjects setSubject(String subject) {
         subjectsInput.setValue(subject).pressEnter();
+        return this;
     }
 
-    public void selectHobby(String hobby) {
+    public FormPageObjects selectHobby(String hobby) {
         hobbiesWrapper.$(byText(hobby)).click();
-    }
+        return this;
+        }
 
-    public void uploadPicture(String path) {
+    public FormPageObjects uploadPicture(String path) {
         uploadPicture.uploadFromClasspath(path);
+        return this;
     }
 
-    public void setAddress(String address) {
+    public FormPageObjects setAddress(String address) {
         currentAddress.setValue(address);
+        return this;
     }
 
-    public void selectState(String stateName) {
+    public FormPageObjects selectState(String stateName) {
         state.scrollTo().click();
         $("#react-select-3-input").setValue(stateName).pressEnter();
+        return this;
     }
 
-    public void selectCity(String cityName) {
+    public FormPageObjects selectCity(String cityName) {
         city.click();
         $("#react-select-4-input").setValue(cityName).pressEnter();
+        return this;
     }
 
-    public void submit() {
+        public FormPageObjects submit() {
         submitButton.scrollIntoView(true);
         submitButton.click();
+        return this;
     }
 } 

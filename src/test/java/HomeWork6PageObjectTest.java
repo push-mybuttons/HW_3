@@ -3,11 +3,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.FormPageObjects;
 import components.ResultsTable;
-
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-
 public class HomeWork6PageObjectTest {
 
     @BeforeAll
@@ -23,23 +18,29 @@ public class HomeWork6PageObjectTest {
         FormPageObjects form = new FormPageObjects();
         ResultsTable results = new ResultsTable();
 
-        form.openPage();
-        form.setFirstName("Mariia");
-        form.setLastName("Ivanova");
-        form.setEmail("mariia@example.com");
-        form.selectGender("Female");
-        form.setPhoneNumber("9123456789");
-        form.setDateOfBirth("May", "1990", "15");
-        form.setSubject("English");
-        form.selectHobby("Sports");
-        form.selectHobby("Music");
-        form.uploadPicture("img/sample.jpg");
-        form.setAddress("1234 Main Street, Moscow");
-        form.selectState("Rajasthan");
-        form.selectCity("Jaipur");
-        form.submit();
-        results.shouldAppear();
-        results.shouldHaveText("Mariia Ivanova");
+        form.openPage()
+            .setFirstName("Mariia")
+            .setLastName("Ivanova")
+            .setEmail("mariia@example.com")
+            .selectGender("Female")
+            .setPhoneNumber("9123456789")
+            .setDateOfBirth("May", "1990", "15")
+            .setSubject("English")
+            .selectHobby("Sports")
+            .selectHobby("Music")
+            .uploadPicture("img/sample.jpg")
+            .setAddress("1234 Main Street, Moscow")
+            .selectState("Rajasthan")
+            .selectCity("Jaipur")
+            .submit();
+        results.shouldAppear()
+            .shouldHaveText("Mariia Ivanova")
+            .shouldHaveText("mariia@example.com")
+            .shouldHaveText("9123456789")
+            .shouldHaveText("15 May,1990")
+            .shouldHaveText("English")
+            .shouldHaveText("Sports")
+            .shouldHaveText("Music");
     }
 
     @Test
@@ -47,17 +48,17 @@ public class HomeWork6PageObjectTest {
         FormPageObjects form = new FormPageObjects();
         ResultsTable results = new ResultsTable();
 
-        form.openPage();
-        form.setFirstName("Ivan");
-        form.setLastName("Petrov");
-        form.selectGender("Male");
-        form.setPhoneNumber("9999999999");
-        form.submit();
+        form.openPage()
+            .setFirstName("Ivan")
+            .setLastName("Petrov")
+            .selectGender("Male")
+            .setPhoneNumber("9999999999")
+            .submit();
 
-        results.shouldAppear();
-        results.shouldHaveText("Ivan Petrov");
-        results.shouldHaveText("Male");
-        results.shouldHaveText("9999999999");
+        results.shouldAppear()
+            .shouldHaveText("Ivan Petrov")
+            .shouldHaveText("Male")
+            .shouldHaveText("9999999999");
     }
 
     @Test
@@ -65,11 +66,11 @@ public class HomeWork6PageObjectTest {
         FormPageObjects form = new FormPageObjects();
         ResultsTable results = new ResultsTable();
 
-        form.openPage();
-        form.setFirstName("Anna");
-        form.setLastName("Sidorova");
-        form.selectGender("Female");
-        form.submit();
+        form.openPage()
+            .setFirstName("Anna")
+            .setLastName("Sidorova")
+            .selectGender("Female")
+            .submit();
 
         results.shouldNotAppear();
     }
