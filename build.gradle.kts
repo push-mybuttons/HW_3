@@ -32,6 +32,8 @@ dependencies {
     testImplementation("com.codeborne:selenide:7.2.1")
     testImplementation("org.seleniumhq.selenium:selenium-devtools-v85:4.18.1")
     implementation("ch.qos.logback:logback-classic:1.4.14")
+    implementation ("com.github.javafaker:javafaker:1.0.2")
+
 }
 
 tasks.test {

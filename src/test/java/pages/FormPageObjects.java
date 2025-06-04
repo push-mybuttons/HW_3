@@ -2,21 +2,22 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import components.CalendarComponent;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selectors.byText;
 
 public class FormPageObjects {
-    private final SelenideElement firstName = $("#firstName");
-    private final SelenideElement lastName = $("#lastName");
-    private final SelenideElement userEmail = $("#userEmail");
+    // Элементы формы
+    private final SelenideElement firstNameInput = $("#firstName");
+    private final SelenideElement lastNameInput = $("#lastName");
+    private final SelenideElement emailInput = $("#userEmail");
     private final SelenideElement genderWrapper = $("#genterWrapper");
-    private final SelenideElement userNumber = $("#userNumber");
-    private final SelenideElement subjectsInput = $("#subjectsInput");
+    private final SelenideElement phoneNumberInput = $("#userNumber");
+    private final SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
+    private final SelenideElement subjectInput = $("#subjectsInput");
     private final SelenideElement hobbiesWrapper = $("#hobbiesWrapper");
-    private final SelenideElement uploadPicture = $("#uploadPicture");
-    private final SelenideElement currentAddress = $("#currentAddress");
-    private final SelenideElement state = $("#state");
-    private final SelenideElement city = $("#city");
+    private final SelenideElement pictureUpload = $("#uploadPicture");
+    private final SelenideElement currentAddressInput = $("#currentAddress");
+    private final SelenideElement stateWrapper = $("#stateCity-wrapper");
     private final SelenideElement submitButton = $("#submit");
     private final CalendarComponent calendar = new CalendarComponent();
 
@@ -25,18 +26,18 @@ public class FormPageObjects {
         return this;
     }
 
-    public FormPageObjects setFirstName(String value) {
-        firstName.setValue(value);
+    public FormPageObjects setFirstName(String firstName) {
+        firstNameInput.setValue(firstName);
         return this;
     }
 
-    public FormPageObjects setLastName(String value) {
-        lastName.setValue(value);
+    public FormPageObjects setLastName(String lastName) {
+        lastNameInput.setValue(lastName);
         return this;
     }
 
-    public FormPageObjects setEmail(String value) {
-        userEmail.setValue(value);
+    public FormPageObjects setEmail(String email) {
+        emailInput.setValue(email);
         return this;
     }
 
@@ -45,51 +46,52 @@ public class FormPageObjects {
         return this;
     }
 
-    public FormPageObjects setPhoneNumber(String value) {
-        userNumber.setValue(value);
+    public FormPageObjects setPhoneNumber(String phoneNumber) {
+        phoneNumberInput.setValue(phoneNumber);
         return this;
     }
 
     public FormPageObjects setDateOfBirth(String month, String year, String day) {
+        dateOfBirthInput.click();
         calendar.setDate(month, year, day);
         return this;
     }
 
     public FormPageObjects setSubject(String subject) {
-        subjectsInput.setValue(subject).pressEnter();
+        subjectInput.setValue(subject).pressEnter();
         return this;
     }
 
     public FormPageObjects selectHobby(String hobby) {
         hobbiesWrapper.$(byText(hobby)).click();
         return this;
-        }
+    }
 
-    public FormPageObjects uploadPicture(String path) {
-        uploadPicture.uploadFromClasspath(path);
+    public FormPageObjects uploadPicture(String picturePath) {
+        pictureUpload.uploadFromClasspath(picturePath);
         return this;
     }
 
     public FormPageObjects setAddress(String address) {
-        currentAddress.setValue(address);
+        currentAddressInput.setValue(address);
         return this;
     }
 
-    public FormPageObjects selectState(String stateName) {
-        state.scrollTo().click();
-        $("#react-select-3-input").setValue(stateName).pressEnter();
+    public FormPageObjects selectState(String state) {
+        stateWrapper.scrollIntoView(true);
+        stateWrapper.$(byText("Select State")).click();
+        stateWrapper.$(byText(state)).click();
         return this;
     }
 
-    public FormPageObjects selectCity(String cityName) {
-        city.click();
-        $("#react-select-4-input").setValue(cityName).pressEnter();
+    public FormPageObjects selectCity(String city) {
+        stateWrapper.$(byText("Select City")).click();
+        stateWrapper.$(byText(city)).click();
         return this;
     }
 
-        public FormPageObjects submit() {
+    public void submit() {
         submitButton.scrollIntoView(true);
         submitButton.click();
-        return this;
     }
 } 
