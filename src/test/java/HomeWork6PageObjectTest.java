@@ -1,14 +1,24 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.FormPageObjects;
 import components.ResultsTable;
 import test.TestData;
 
 public class HomeWork6PageObjectTest {
+    private TestData testData;  // Тестовые данные
+    private FormPageObjects form;  // Страничный объект формы
+    private ResultsTable results;  // Страничный объект результатов
 
+    @BeforeEach
+    void setUp() {
+        testData = new TestData();
+        form = new FormPageObjects();
+        results = new ResultsTable();
+    }
     @BeforeAll
-    static void beforeAll() {
+    static void beforeAll() {  // Инициализация браузера
         Configuration.browser = "Chrome";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
@@ -21,13 +31,8 @@ public class HomeWork6PageObjectTest {
      */
     @Test
     void fillTheFormTest() {
-        // Подготовка тестовых данных
-        TestData testData = new TestData();
 
-        // Инициализация страничных объектов
-        FormPageObjects form = new FormPageObjects();
-        ResultsTable results = new ResultsTable();
-
+        // Заполнение формы
         form.openPage()
             .setFirstName(testData.getFirstName())
             .setLastName(testData.getLastName())
@@ -44,6 +49,7 @@ public class HomeWork6PageObjectTest {
             .selectCity(testData.getCity())
             .submit();
 
+        // Проверка результатов
         results.shouldAppear()
             .shouldHaveText(testData.getFirstName() + " " + testData.getLastName())
             .shouldHaveText(testData.getEmail())
@@ -54,13 +60,14 @@ public class HomeWork6PageObjectTest {
             .shouldHaveText(testData.getHobbies()[1]);
     }
 
+    /**
+     * Тест заполнения минимально необходимых полей формы
+     * Проверяет корректность сохранения и отображения введенных данных
+     */
     @Test
     void fillMinimalRequiredFieldsTest() {
-        TestData testData = new TestData();
 
-        FormPageObjects form = new FormPageObjects();
-        ResultsTable results = new ResultsTable();
-
+        // Заполнение формы
         form.openPage()
             .setFirstName(testData.getFirstName())
             .setLastName(testData.getLastName())
@@ -68,25 +75,28 @@ public class HomeWork6PageObjectTest {
             .setPhoneNumber(testData.getPhoneNumber())
             .submit();
 
+        // Проверка результатов
         results.shouldAppear()
             .shouldHaveText(testData.getFirstName() + " " + testData.getLastName())
             .shouldHaveText(testData.getGender())
             .shouldHaveText(testData.getPhoneNumber());
     }
 
+    /**
+     * Негативный тест - попытка отправки формы без номера телефона
+     * Проверяет, что форма не может быть отправлена без обязательного поля
+     */
     @Test
     void negativeTestWithoutPhoneTest() {
-        TestData testData = new TestData();
 
-        FormPageObjects form = new FormPageObjects();
-        ResultsTable results = new ResultsTable();
-
+        // Заполнение формы
         form.openPage()
             .setFirstName(testData.getFirstName())
             .setLastName(testData.getLastName())
             .selectGender(testData.getGender())
             .submit();
 
+        // Проверка, что результаты не отображаются
         results.shouldNotAppear();
     }
 }
